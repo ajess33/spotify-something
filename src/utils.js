@@ -13,9 +13,7 @@ const getToken = () => {
     }, {});
   window.location.hash = '';
 
-  // set token
-  const _token = hash.access_token;
-  return _token;
+  return hash.access_token;
 };
 
 export const spotifyAuthCheck = async () => {
