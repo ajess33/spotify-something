@@ -1,6 +1,7 @@
 import axios from 'axios';
+import store from './redux/store';
 
-const getToken = () => {
+export const getHash = () => {
   const hash = window.location.hash
     .substring(1)
     .split('&')
@@ -12,26 +13,28 @@ const getToken = () => {
       return initial;
     }, {});
   window.location.hash = '';
-
-  return hash.access_token;
+  return hash;
 };
 
-export const spotifyAuthCheck = async () => {
-  const _token = getToken();
-  console.log(process.env.REACT_APP_REDIRECT_URI);
-  const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
+export const callSpotify = (token) => (path, method = 'GET', body = null) => {
+  let config = {
+    method,
+    url: path,
+    headers: { Authorization: `Bearer ${token}` }
+  };
 
-  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
+  return axios(config)
+    .then((res) => res.data)
+    .catch((err) => err.response.data);
+};
 
-  if (!_token) window.location = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token`;
+export const useCallSpotify = () => {
+  const { token } = store.getState().generalData;
+  const apiCall = callSpotify(token);
+  return { apiCall };
+};
 
-  const config = {
-    method: 'GET',
-    url: AUTH_ENDPOINT,
-    headers: { Authorization: `Bearer ${_token}` }
-  }
-
-  let response = await axios(config);
-  console.log(response);
-}
+export default {
+  useCallSpotify,
+  getHash
+};

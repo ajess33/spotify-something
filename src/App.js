@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { spotifyAuthCheck } from './utils';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
+
+import Home from './components/home/Home';
 
 function App() {
-  useEffect(() => {
-    spotifyAuthCheck();
-  }, [])
-
   return (
-    <div className="app-container">
-      <h1>Hello</h1>
-    </div>
+    <BrowserRouter>
+      <Provider store={store}>
+        <Route path="/" exact component={Home} />
+      </Provider>
+    </BrowserRouter>
   );
 }
 
