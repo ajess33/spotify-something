@@ -1,0 +1,50 @@
+@import '../../colors.scss';
+
+body {
+  background-color: $dark;
+}
+
+.dashboard-wrapper {
+
+  .login-wrapper {
+    text-align: center;
+
+    a {
+      height: 40px;
+      width: 100px;
+      background-color: $primaryGreen;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 40vh;
+
+      & :hover {
+        background-color: $secondaryGreen;
+      }
+    }
+  }
+
+  .content-wrapper {
+    margin: 0 20px;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      h4 {
+        color: $light;
+      }
+
+      button.logout {
+        height: 30px;
+        border-radius: 5px;
+        padding: 5px 10px;
+        background-color: $primaryGreen;
+        border: none;
+        color: white;
+      }
+    }
+  }
+}
