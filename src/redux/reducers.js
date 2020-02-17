@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
 import generalReducer from './generalReducer';
+import dashboardReducer from '../components/dashboard/dashboardReducer';
 
 export default combineReducers({
-  generalData: generalReducer
+  generalData: generalReducer,
+  dashboardData: dashboardReducer
 });

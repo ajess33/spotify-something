@@ -1,24 +1,43 @@
-import utils from './utils';
+import utils from './utils/general';
 
-export const spotifyAuthCheck = async () => {
-  const { apiCall } = utils.useCallSpotify();
-  const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
-  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
-
-  window.location = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=user-top-read%20user-read-recently-played%20user-library-read`;
-
-  return apiCall(AUTH_ENDPOINT);
-};
+const USER_BASE_URL = `https://api.spotify.com/v1/me`;
 
 export const fetchUserData = async () => {
   const { apiCall } = utils.useCallSpotify();
-  const URL = `https://api.spotify.com/v1/me`;
+  const URL = USER_BASE_URL;
   return apiCall(URL);
 };
 
 export const fetchTopTracks = async () => {
   const { apiCall } = utils.useCallSpotify();
-  const URL = `https://api.spotify.com/v1/me/top/tracks`;
+  const URL = `${USER_BASE_URL}/top/tracks`;
   return apiCall(URL);
 };
+
+export const fetchRecentlyPlayed = async () => {
+  const { apiCall } = utils.useCallSpotify();
+  const URL = `${USER_BASE_URL}/player/recently-played`;
+  return apiCall(URL);
+};
+
+export const fetchUserLibrary = async () => {
+  const { apiCall } = utils.useCallSpotify();
+  const URL = `${USER_BASE_URL}/tracks`;
+  return apiCall(URL);
+};
+// const searchForRelatedArtists = async () => {
+//   const id = await fetchArtistID();
+//   const URL = `https://api.spotify.com/v1/artists/${id}/related-artists`;
+//   const config = requestConfig(URL, "GET", token);
+
+//   const relatedArtists = await axios(config);
+// }
+
+// const fetchArtistID = async () => {
+//   const f_artist = encodeURIComponent(artist);
+//   let searchURL = `https://api.spotify.com/v1/search?q=${f_artist}&type=artist`;
+
+//   const config = requestConfig(searchURL, "GET", token);
+//   const response = await axios(config);
+//   return response.data.artists.items[0].id;
+// }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from './redux/store';
+import store from '../redux/store'
 
 export const SPOTIFY_AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=token&scope=user-top-read%20user-read-recently-played%20user-library-read&show_dialog=true`;
 

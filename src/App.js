@@ -4,13 +4,15 @@ import { Provider } from 'react-redux';
 
 import store from './redux/store';
 
-import Home from './components/home/Home';
+import Dashboard from "./components/dashboard/Dashboard";
+
+import './index.scss';
 
 function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={Dashboard} />
       </Provider>
     </BrowserRouter>
   );
