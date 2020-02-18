@@ -37,6 +37,10 @@ export const receiveUserLibrarySucceeded = (library) => ({
   type: 'RECEIVE_USER_LIBRARY_SUCCEEDED',
   payload: library
 });
+export const receiveTopTracksPopularity = (popularity) => ({
+  type: 'RECEIVE_TOP_TRACK_POPULARITY',
+  payload: popularity
+});
 
 export const handleTopTracks = (dispatch) => {
   receiveTopTracksStarted();
@@ -60,4 +64,8 @@ export const handleUserLibrary = (dispatch) => {
     if (res.error) return dispatch(receiveUserLibraryFailed(res.error));
     return dispatch(receiveUserLibrarySucceeded(res.items));
   });
+};
+
+export const handleTopTracksPopularity = (popularity) => dispatch => {
+  return dispatch(receiveTopTracksPopularity(popularity));
 };

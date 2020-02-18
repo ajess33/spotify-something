@@ -1,5 +1,6 @@
 const initialState = {
   topTracks: [],
+  topTrackPopularity: null,
   recentlyPlayed: [],
   userLibrary: [],
   isLoading: false,
@@ -27,6 +28,8 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, error: payload };
     case 'RECEIVE_USER_LIBRARY_SUCCEEDED':
       return { ...state, userLibrary: payload };
+    case 'RECEIVE_TOP_TRACK_POPULARITY':
+      return { ...state, topTrackPopularity: payload };
     default:
       return state;
   }
