@@ -16,9 +16,10 @@ import { calcTopTrackPopularity } from "../../utils/library";
 import './dashboard.scss';
 
 const hash = getHashParams();
+console.log(hash);
 
 const Dashboard = () => {
-  const { token, userId } = useSelector(state => state.generalData);
+  const { token, userId, displayName } = useSelector(state => state.generalData);
   const { topTracks, recentlyPlayed, userLibrary, isLoading } = useSelector(state => state.dashboardData);
   const dispatch = useDispatch();
 
@@ -58,7 +59,7 @@ const Dashboard = () => {
       {!token ? <Login /> : (
         <div className="content-wrapper">
           <header>
-            <h4>Dashboard</h4>
+            <h4>{displayName}</h4>
             <button className="logout">LOGOUT</button>
           </header>
           <div className="dashboard">

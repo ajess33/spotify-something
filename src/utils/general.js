@@ -9,25 +9,27 @@ export const getHashParams = () => {
   const pattern = /([^&;=]+)=?([^&;]*)/g;
   const q = window.location.hash.substring(1);
   while ((e = pattern.exec(q))) {
+    console.log('e', e);
     hashParams[e[1]] = decodeURIComponent(e[2]);
   }
   return hashParams;
 };
 
-export const getHash = () => {
-  const hash = window.location.hash
-    .substring(1)
-    .split('&')
-    .reduce((initial, item) => {
-      if (item) {
-        var parts = item.split('=');
-        initial[parts[0]] = decodeURIComponent(parts[1]);
-      }
-      return initial;
-    }, {});
-  window.location.hash = '';
-  return hash;
-};
+// export const getHash = () => {
+//   const hash = window.location.hash
+//     .substring(1)
+//     .split('&')
+//     .reduce((initial, item) => {
+//       if (item) {
+//         var parts = item.split('=');
+//         initial[parts[0]] = decodeURIComponent(parts[1]);
+//       }
+//       return initial;
+//     }, {});
+//   window.location.hash = '';
+//   console.log('hash', hash);
+//   return hash;
+// };
 
 export const callSpotify = (token) => (path, method = 'GET', body = null) => {
   let config = {
